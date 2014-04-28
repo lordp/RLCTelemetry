@@ -12,13 +12,24 @@ namespace RLCTelemetry.Utilities
     using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Takes in a float of miliseconds. Returns a new time formatted as 1:11.111.
     /// </summary>
-    public static class MilisecondConverter
+    public class MillisecondConverter
     {
-        //public Time Convert(float miliseconds)
-        //{
-        //    // Takes in a float of miliseconds. Returns a new time formatted as 1:11.111.
-        //}
+        public String Convert(float milliseconds)
+        {
+            double divisor = 60;
+            double remainder = Math.Round(milliseconds % divisor, 3);
+            int quotient = (int)(milliseconds / divisor);
+
+            if (quotient > 0)
+            {
+                return string.Format("{0}:{1}", quotient, remainder);
+            }
+            else
+            {
+                return string.Format("{0}", remainder);
+            }
+        }
     }
 }
