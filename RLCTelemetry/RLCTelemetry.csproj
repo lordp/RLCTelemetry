@@ -87,6 +87,8 @@
     <Compile Include="Stream\UDP\UDPStream.cs" />
     <Compile Include="Utilities\Factories\LapFactory.cs" />
     <Compile Include="Utilities\MilisecondConverter.cs" />
+    <Compile Include="Utilities\RLCAPI.cs" />
+    <Compile Include="Utilities\RLCAPIData.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
