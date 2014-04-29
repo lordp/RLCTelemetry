@@ -9,6 +9,8 @@ namespace RLCTelemetry.Stream.Data
     using System;
     using System.Collections.Generic;
     using RLCTelemetry.Stream.UDP;
+    using RLCTelemetry.Utilities;
+    using RLCTelemetry.Settings.Localisation;
     
 
     public class Session
@@ -17,16 +19,16 @@ namespace RLCTelemetry.Stream.Data
         public int ID;
 
         // List of laps in this session.
-        public List<Lap> Laps = new List<Lap>();
+        private List<Lap> laps = new List<Lap>();
 
-        // Current position
+        // Current position NOT SURE ABOUT THIS.
         public int Position;
 
         // The current lap in this session.
         public Lap CurrentLap = new Lap();
 
         // The previous lap, this gets added to the list of laps.
-        public Lap PreviousLap = new Lap();
+        //public Lap PreviousLap = new Lap();
 
         // The session Top Speed.
         private TopSpeed topspeed = new TopSpeed();
@@ -38,35 +40,69 @@ namespace RLCTelemetry.Stream.Data
         public Session(MainWindow parent)
         {
             this.parent = parent;
-
-
-
-            // Make connection with website.
-            // Get a session ID.
-
-            // SO as the laps are completed, the lap gets added to the list of laps.
-            //this.Laps.Add(lap);
-
-            //this.topspeed.Parse(stream.Speed);
-
-
-            //stream.Handle.
-
-            
-
-
         }
 
         public void UpdateTopSpeed(float speed, int lap)
         {
             this.topspeed.Parse(speed, lap);
+
+            if (this.topspeed.Speed == speed)
+            {
+                this.updatetopspeedvalue();
+            }
         }
 
-        private void updatesessionvalues()
+        public void AddLap(Lap lap)
         {
-            this.parent.UpdateTopSpeedLabel(this.topspeed.ToString());
+            // This method updates the list of laps. It is called when the lap is finished, and can add a lap to the list.
 
-            //;this.Handle.topSpeed.Text = session.TopSpeed.ToString()
+            // I think it should be looping through this.laps and updating that way, not sure tbh.
+            this.laps.Add(lap);
+
+            this.updatelaps(lap);
+        }
+
+        public void UpdateLastLapTime(float time)
+        {
+            string stime = TimeFormatter.FormatFloat(time);
+            this.parent.UpdateLastLapLabel(stime);
+        }
+
+        public void UpdateLastLapTime(string time)
+        {
+            this.parent.UpdateLastLapLabel(time);
+        }
+
+        private void updatetopspeedvalue()
+        {
+            switch(this.parent.SpeedUnits)
+            {
+                case Speed.MPH:
+                    this.parent.UpdateTopSpeedLabel(Localisation.ToMPH(this.topspeed.Speed).ToString());
+                    break;
+
+                case Speed.KPH:
+                    this.parent.UpdateTopSpeedLabel(Localisation.ToKPH(this.topspeed.Speed).ToString());
+                    break;
+            }
+        }
+
+        
+
+        private void updatelaps(Lap lap)
+        {
+            // Updates the list of laps on the MainWindow.
+
+            float num = lap.LapNumber;
+            float sec1 = lap.Sector1;
+            float sec2 = lap.Sector2;
+            float sec3 = lap.Sector3;
+            string time = lap.LapTimeString;
+
+            string result = "Lap " + num + ": Time:" + time;
+
+
+            this.parent.AddLapToPreviousLaps(result);
         }
 
 

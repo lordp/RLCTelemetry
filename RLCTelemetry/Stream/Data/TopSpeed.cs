@@ -28,6 +28,7 @@ namespace RLCTelemetry.Stream.Data
             {
                 this.speed = newspeed;
                 this.lap = lap;
+                Console.WriteLine("Top speed updated");
             }
         }
 
@@ -35,6 +36,11 @@ namespace RLCTelemetry.Stream.Data
         {
             // So hacky.
             return (int)this.speed;
+        }
+
+        public override string ToString()
+        {
+            return this.speed.ToString();
         }
     }
 }
