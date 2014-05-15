@@ -75,6 +75,9 @@
     <Compile Include="Controls\UIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UILabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UITabs.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -84,11 +87,35 @@
     <Compile Include="GUI\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AboutBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AboutBoxForm.Designer.cs">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ApplicationSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ApplicationSettings.Designer.cs">
+      <DependentUpon>ApplicationSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Authentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Authentication.Designer.cs">
+      <DependentUpon>Authentication.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Instructions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Instructions.Designer.cs">
       <DependentUpon>Instructions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Settings.cs">
       <SubType>Form</SubType>
@@ -104,6 +131,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rlc.cs" />
+    <Compile Include="rlc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>rlc.settings</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Settings\Localisation\Localisation.cs" />
     <Compile Include="Settings\Localisation\Speed.cs" />
     <Compile Include="Stream\Data\Lap.cs" />
@@ -111,6 +145,9 @@
     <Compile Include="Stream\Data\TopSpeed.cs" />
     <Compile Include="Stream\Http\WebsiteStream.cs" />
     <Compile Include="Stream\UDP\UDPStream.cs" />
+    <Compile Include="Utilities\Authentication\Authenticator.cs" />
+    <Compile Include="Utilities\Configuration\F12013Config.cs" />
+    <Compile Include="Utilities\Configuration\F12013Config2.cs" />
     <Compile Include="Utilities\Factories\LapFactory.cs" />
     <Compile Include="Utilities\MilisecondConverter.cs" />
     <Compile Include="Utilities\RLCAPI.cs" />
@@ -118,6 +155,18 @@
     <Compile Include="Utilities\TimeFormatter.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AboutBoxForm.resx">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ApplicationSettings.resx">
+      <DependentUpon>ApplicationSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Authentication.resx">
+      <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -143,6 +192,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="rlc.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>rlc.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -166,6 +220,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Icons\Helmets\32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Banner\AboutBanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Class Libraries\WebAPI\WebAPI\WebAPI.csproj">
+      <Project>{e43d4b94-0595-4bb9-98a0-5df91b81ff44}</Project>
+      <Name>WebAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
